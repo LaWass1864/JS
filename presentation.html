@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript - Les Bases</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f5f7;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 60px 100px;
+            background: white;
+            border-bottom: 1px solid #d2d2d7;
+        }
+
+        h1 {
+            font-size: 72px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #1d1d1f;
+        }
+
+        h2 {
+            font-size: 52px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            color: #1d1d1f;
+        }
+
+        .subtitle {
+            font-size: 28px;
+            color: #6e6e73;
+            margin-bottom: 40px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            font-size: 32px;
+            line-height: 1.8;
+            color: #1d1d1f;
+            margin-bottom: 15px;
+        }
+
+        li::before {
+            content: "• ";
+            color: #0071e3;
+            font-weight: bold;
+            font-size: 36px;
+            margin-right: 15px;
+        }
+
+        code {
+            background: #1d1d1f;
+            color: #f5f5f7;
+            padding: 30px 40px;
+            border-radius: 16px;
+            font-size: 24px;
+            line-height: 1.8;
+            display: block;
+            font-family: 'SF Mono', Monaco, monospace;
+            margin: 30px 0;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        .keyword { color: #fc6399; }
+        .string { color: #fc8f6f; }
+        .number { color: #d0bf69; }
+        .comment { color: #6c7986; }
+        .function { color: #61afef; }
+
+        .table {
+            margin: 30px 0;
+            border-collapse: collapse;
+        }
+
+        .table th,
+        .table td {
+            padding: 15px 30px;
+            text-align: left;
+            font-size: 26px;
+            border-bottom: 2px solid #d2d2d7;
+        }
+
+        .table th {
+            font-weight: 600;
+            color: #1d1d1f;
+        }
+
+        .table td {
+            color: #6e6e73;
+        }
+
+        .highlight {
+            color: #0071e3;
+            font-weight: 600;
+        }
+
+        .exercise-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9500;
+            padding: 30px 40px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .exercise-box h3 {
+            color: #ff9500;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .exercise-box ul li {
+            font-size: 28px;
+        }
+
+        .error-box {
+            background: #ffefef;
+            border-left: 4px solid #ff3b30;
+            padding: 20px 30px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .error-box code {
+            background: #1d1d1f;
+            padding: 15px 25px;
+            font-size: 22px;
+            margin: 15px 0;
+        }
+
+        .step-box {
+            background: #f0f7ff;
+            border-left: 4px solid #0071e3;
+            padding: 20px 30px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .info-box {
+            background: #e8f5e9;
+            border-left: 4px solid #34c759;
+            padding: 20px 30px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .info-box p {
+            font-size: 24px;
+            color: #1d1d1f;
+        }
+
+        .timer-box {
+            background: #f5f5f7;
+            border: 2px solid #ff9500;
+            padding: 20px 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .timer-box p {
+            font-size: 24px;
+            color: #ff9500;
+            font-weight: 600;
+        }
+
+        .analogy-box {
+            background: #f3e5f5;
+            border-left: 4px solid #9c27b0;
+            padding: 20px 30px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .analogy-box p {
+            font-size: 24px;
+            color: #1d1d1f;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Slide 1 : Titre -->
+    <div class="slide">
+        <h1>Introduction à JavaScript</h1>
+        <p class="subtitle">Les bases pour débutants</p>
+    </div>
+
+    <!-- Slide 2 : C'est quoi JavaScript -->
+    <div class="slide">
+        <h2>C'est quoi JavaScript ?</h2>
+        <ul>
+            <li>Rend les pages web <span class="highlight">interactives</span></li>
+            <li>Réagit aux <span class="highlight">actions</span> de l'utilisateur</li>
+            <li>Change le contenu <span class="highlight">sans recharger</span> la page</li>
+        </ul>
+        <div class="analogy-box" style="margin-top: 30px;">
+            <p>🏠 <strong>Analogie :</strong> Si le HTML est la structure d'une maison et le CSS la décoration, alors JavaScript est l'électricité qui fait fonctionner les interrupteurs, les portes automatiques, etc.</p>
+        </div>
+    </div>
+
+    <!-- Slide 3 : Où placer le code - inline -->
+    <div class="slide">
+        <h2>Où placer le code ?</h2>
+        <p class="subtitle">Option 1 : Dans le HTML (pour tester rapidement)</p>
+        <code><span class="keyword">&lt;body&gt;</span>
+    <span class="comment">&lt;!-- Votre contenu HTML --&gt;</span>
+    
+    <span class="keyword">&lt;script&gt;</span>
+        console.log(<span class="string">"Hello"</span>);
+    <span class="keyword">&lt;/script&gt;</span>
+<span class="keyword">&lt;/body&gt;</span></code>
+        <div class="info-box">
+            <p>💡 <strong>Pourquoi à la fin du body ?</strong> Parce que le navigateur lit le code de haut en bas. Si on met le JS avant le HTML, il ne trouvera pas les éléments !</p>
+        </div>
+    </div>
+
+    <!-- Slide 4 : Où placer le code - externe -->
+    <div class="slide">
+        <h2>Où placer le code ?</h2>
+        <p class="subtitle">Option 2 : Fichier séparé (recommandé en vrai projet)</p>
+        <code><span class="keyword">&lt;body&gt;</span>
+    <span class="comment">&lt;!-- Votre contenu HTML --&gt;</span>
+    
+    <span class="keyword">&lt;script</span> <span class="function">src</span>=<span class="string">"script.js"</span><span class="keyword">&gt;&lt;/script&gt;</span>
+<span class="keyword">&lt;/body&gt;</span></code>
+        <div class="info-box">
+            <p>💡 <strong>Pourquoi un fichier séparé ?</strong> Pour mieux organiser son code. Comme on sépare le CSS du HTML, on sépare aussi le JavaScript.</p>
+        </div>
+    </div>
+
+    <!-- Slide 5 : Console - Introduction -->
+    <div class="slide">
+        <h2>La console</h2>
+        <p class="subtitle">Votre meilleur ami pour débugger</p>
+        <ul>
+            <li>Ouvrir : <span class="highlight">F12</span> ou <span class="highlight">Clic droit → Inspecter → Console</span></li>
+            <li>Afficher des messages : <span class="highlight">console.log()</span></li>
+        </ul>
+        <div class="analogy-box" style="margin-top: 30px;">
+            <p>🔍 <strong>C'est quoi la console ?</strong> C'est une fenêtre cachée du navigateur où vous pouvez voir les messages de votre code JavaScript. C'est comme un "journal de bord" qui vous dit ce qui se passe dans votre programme.</p>
+        </div>
+    </div>
+
+    <!-- Slide 6 : Console - À quoi ça sert -->
+    <div class="slide">
+        <h2>À quoi sert la console ?</h2>
+        <ul>
+            <li><span class="highlight">Voir les erreurs</span> → le navigateur vous dit ce qui ne va pas</li>
+            <li><span class="highlight">Tester du code</span> → vous pouvez écrire du JS directement dedans</li>
+            <li><span class="highlight">Débugger</span> → afficher des valeurs pour comprendre ce qui se passe</li>
+        </ul>
+        <code>console.<span class="function">log</span>(<span class="string">"Bonjour !"</span>);
+<span class="comment">// Affiche "Bonjour !" dans la console</span>
+
+console.<span class="function">log</span>(<span class="number">42</span>);
+<span class="comment">// Affiche le nombre 42</span></code>
+        <div class="info-box">
+            <p>💡 <strong>Astuce :</strong> Si votre code ne fonctionne pas, regardez toujours la console en premier ! Les erreurs s'affichent en rouge.</p>
+        </div>
+    </div>
+
+    <!-- Slide 7 : Exercice Console -->
+    <div class="slide">
+        <h2>🎯 Exercice 1 : Console</h2>
+        <div class="exercise-box">
+            <h3>À vous de jouer sur CodePen !</h3>
+            <ul>
+                <li>Afficher <span class="highlight">"Mon premier JavaScript !"</span> dans la console</li>
+                <li>Afficher votre <span class="highlight">prénom</span> dans la console</li>
+                <li>Afficher un <span class="highlight">nombre</span> dans la console</li>
+            </ul>
+            <p style="font-size: 22px; margin-top: 20px; color: #6e6e73;">📌 N'oubliez pas d'ouvrir la console (F12) pour voir vos messages !</p>
+        </div>
+        <div class="timer-box">
+            <p>⏱️ 5 minutes</p>
+        </div>
+    </div>
+
+    <!-- Slide 8 : Contexte TikTok -->
+    <div class="slide">
+        <h2>Notre projet du jour 🎯</h2>
+        <p class="subtitle">On va coder ensemble les données d'un profil TikTok !</p>
+        <div style="display: flex; align-items: center; gap: 60px;">
+            <div style="flex: 1;">
+                <ul>
+                    <li>Stocker des données dans des <span class="highlight">variables</span></li>
+                    <li>Afficher ces données sur une page</li>
+                    <li>Réagir aux clics de l'utilisateur</li>
+                </ul>
+            </div>
+            <div style="flex: 0 0 auto; background: #1d1d1f; padding: 40px; border-radius: 20px; text-align: center;">
+                <p style="color: white; font-size: 24px;">📱 Profil TikTok</p>
+                <p style="color: #0071e3; font-size: 32px; margin-top: 20px;">@netflixfr</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9 : Données du profil -->
+    <div class="slide">
+        <h2>Les données à coder</h2>
+        <p class="subtitle">Chaque donnée a un type différent</p>
+        <table class="table">
+            <tr>
+                <th>Donnée</th>
+                <th>Valeur</th>
+                <th>Type</th>
+            </tr>
+            <tr>
+                <td>Nom d'utilisateur</td>
+                <td><span class="highlight">netflixfr</span></td>
+                <td>Texte</td>
+            </tr>
+            <tr>
+                <td>Followers</td>
+                <td><span class="highlight">10 500 000</span></td>
+                <td>Nombre</td>
+            </tr>
+            <tr>
+                <td>Badge vérifié</td>
+                <td><span class="highlight">✅ Oui</span></td>
+                <td>Vrai/Faux</td>
+            </tr>
+        </table>
+        <div class="info-box">
+            <p>💡 <strong>Question :</strong> Comment stocker ces données dans notre code ? → Avec des <strong>variables</strong> !</p>
+        </div>
+    </div>
+
+    <!-- Slide 10 : Variable let -->
+    <div class="slide">
+        <h2>Variable (let)</h2>
+        <ul>
+            <li>Une "boîte" qui <span class="highlight">stocke une valeur</span></li>
+            <li>Peut être <span class="highlight">modifiée</span> plus tard</li>
+            <li>Mot-clé : <span class="highlight">let</span></li>
+        </ul>
+        <code><span class="keyword">let</span> username = <span class="string">"netflixfr"</span>;
+<span class="comment">// J'ai créé une boîte "username" qui contient "netflixfr"</span>
+
+username = <span class="string">"netflixus"</span>;
+<span class="comment">// Je peux changer le contenu de la boîte</span></code>
+        <div class="analogy-box">
+            <p>📦 <strong>Analogie :</strong> Une variable, c'est comme une boîte étiquetée. L'étiquette c'est le nom (username), et à l'intérieur on met une valeur ("netflixfr"). On peut vider la boîte et mettre autre chose.</p>
+        </div>
+    </div>
+
+    <!-- Slide 11 : Constante -->
+    <div class="slide">
+        <h2>Constante (const)</h2>
+        <ul>
+            <li>Une "boîte" qui <span class="highlight">ne change jamais</span></li>
+            <li>Mot-clé : <span class="highlight">const</span></li>
+            <li>Exemple : date de naissance, nom de l'app</li>
+        </ul>
+        <code><span class="keyword">const</span> appName = <span class="string">"TikTok"</span>;
+<span class="comment">// Cette valeur ne changera jamais</span>
+
+<span class="comment">// ❌ ERREUR si on essaie de modifier :</span>
+<span class="comment">// appName = "Instagram";</span></code>
+        <div class="info-box">
+            <p>💡 <strong>Quand utiliser const ?</strong> Pour les valeurs qui ne doivent jamais changer : votre date de naissance, le nom de l'application, une URL fixe...</p>
+        </div>
+    </div>
+
+    <!-- Slide 12 : Exercice Variables -->
+    <div class="slide">
+        <h2>🎯 Exercice 2 : Variables</h2>
+        <div class="exercise-box">
+            <h3>À vous de jouer sur CodePen !</h3>
+            <ul>
+                <li>Créer une variable <span class="highlight">prenom</span> avec votre prénom</li>
+                <li>Créer une variable <span class="highlight">age</span> avec votre âge</li>
+                <li>Créer une constante <span class="highlight">ville</span> avec votre ville</li>
+                <li>Afficher les trois dans la console</li>
+            </ul>
+            <p style="font-size: 22px; margin-top: 20px; color: #6e6e73;">📌 Utilisez <strong>let</strong> pour les valeurs qui peuvent changer, <strong>const</strong> pour celles qui ne changent pas</p>
+        </div>
+        <div class="timer-box">
+            <p>⏱️ 5 minutes</p>
+        </div>
+    </div>
+
+    <!-- Slide 13 : Types de données -->
+    <div class="slide">
+        <h2>Types de données</h2>
+        <p class="subtitle">JavaScript reconnaît différents types de valeurs</p>
+        <table class="table">
+            <tr>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Exemple</th>
+            </tr>
+            <tr>
+                <td><span class="highlight">String</span></td>
+                <td>Texte (toujours entre guillemets)</td>
+                <td>"netflixfr"</td>
+            </tr>
+            <tr>
+                <td><span class="highlight">Number</span></td>
+                <td>Nombre (jamais de guillemets)</td>
+                <td>10500000</td>
+            </tr>
+            <tr>
+                <td><span class="highlight">Boolean</span></td>
+                <td>Vrai ou Faux</td>
+                <td>true / false</td>
+            </tr>
+        </table>
+        <div class="info-box">
+            <p>⚠️ <strong>Attention :</strong> <code style="display:inline; padding: 5px 10px; font-size: 20px;">"100"</code> est un texte (String), alors que <code style="display:inline; padding: 5px 10px; font-size: 20px;">100</code> est un nombre (Number). Les guillemets font toute la différence !</p>
+        </div>
+    </div>
+
+    <!-- Slide 14 : Exercice Types -->
+    <div class="slide">
+        <h2>🎯 Exercice 3 : Types de données</h2>
+        <div class="exercise-box">
+            <h3>Quiz : Quel est le type de chaque variable ?</h3>
+            <code style="background: #1d1d1f; font-size: 26px;"><span class="keyword">let</span> a = <span class="string">"Bonjour"</span>;      <span class="comment">// Type ?</span>
+<span class="keyword">let</span> b = <span class="number">42</span>;              <span class="comment">// Type ?</span>
+<span class="keyword">let</span> c = <span class="keyword">true</span>;            <span class="comment">// Type ?</span>
+<span class="keyword">let</span> d = <span class="string">"100"</span>;           <span class="comment">// Type ? (piège !)</span>
+<span class="keyword">let</span> e = <span class="number">3.14</span>;            <span class="comment">// Type ?</span></code>
+            <p style="font-size: 22px; margin-top: 20px; color: #6e6e73;">📌 Indice : regardez s'il y a des guillemets ou non !</p>
+        </div>
+        <div class="timer-box">
+            <p>⏱️ 3 minutes</p>
+        </div>
+    </div>
+
+    <!-- Slide 15 : Exemple complet variables -->
+    <div class="slide">
+        <h2>Exemple complet</h2>
+        <p class="subtitle">Notre profil TikTok en JavaScript</p>
+        <code><span class="comment">// Texte (String) → entre guillemets</span>
+<span class="keyword">let</span> username = <span class="string">"netflixfr"</span>;
+
+<span class="comment">// Nombre (Number) → sans guillemets</span>
+<span class="keyword">let</span> followers = <span class="number">10500000</span>;
+
+<span class="comment">// Vrai/Faux (Boolean) → true ou false</span>
+<span class="keyword">const</span> verified = <span class="keyword">true</span>;
+
+<span class="comment">// Vérifier dans la console</span>
+console.<span class="function">log</span>(username);
+console.<span class="function">log</span>(followers);
+console.<span class="function">log</span>(verified);</code>
+    </div>
+
+    <!-- Slide 16 : DOM Introduction -->
+    <div class="slide">
+        <h2>Manipuler le HTML</h2>
+        <p class="subtitle">DOM = Document Object Model</p>
+        <div class="analogy-box">
+            <p>🌳 <strong>C'est quoi le DOM ?</strong> C'est la façon dont JavaScript "voit" votre page HTML. Chaque balise HTML devient un objet que JavaScript peut sélectionner et modifier.</p>
+        </div>
+        <div class="step-box" style="margin-top: 30px;">
+            <p style="font-size: 26px; margin-bottom: 15px;"><strong>En 3 étapes :</strong></p>
+            <p style="font-size: 24px;">1️⃣ <span class="highlight">Sélectionner</span> un élément HTML</p>
+            <p style="font-size: 24px;">2️⃣ <span class="highlight">Modifier</span> son contenu ou son style</p>
+            <p style="font-size: 24px;">3️⃣ <span class="highlight">Réagir</span> aux actions de l'utilisateur</p>
+        </div>
+    </div>
+
+    <!-- Slide 17 : ID en HTML -->
+    <div class="slide">
+        <h2>ID et Classe en HTML</h2>
+        <p class="subtitle">Comment identifier un élément ?</p>
+        <code><span class="keyword">&lt;h1</span> <span class="function">id</span>=<span class="string">"username"</span><span class="keyword">&gt;</span>netflixfr<span class="keyword">&lt;/h1&gt;</span>
+
+<span class="keyword">&lt;p</span> <span class="function">class</span>=<span class="string">"description"</span><span class="keyword">&gt;</span>Bienvenue<span class="keyword">&lt;/p&gt;</span></code>
+        <ul style="margin-top: 30px;">
+            <li><span class="highlight">ID</span> (#) : unique, une seule fois par page (comme un numéro de sécu)</li>
+            <li><span class="highlight">Classe</span> (.) : peut être utilisée plusieurs fois (comme un groupe sanguin)</li>
+        </ul>
+        <div class="info-box">
+            <p>💡 <strong>Rappel CSS :</strong> En CSS, on cible un ID avec <strong>#</strong> et une classe avec <strong>.</strong> → C'est pareil en JavaScript !</p>
+        </div>
+    </div>
+
+    <!-- Slide 18 : querySelector -->
+    <div class="slide">
+        <h2>Étape 1 : Sélectionner</h2>
+        <p class="subtitle">querySelector = "Va chercher cet élément"</p>
+        <code><span class="comment">// Sélectionner par ID (avec #)</span>
+<span class="keyword">let</span> titre = document.<span class="function">querySelector</span>(<span class="string">"#username"</span>);
+
+<span class="comment">// Sélectionner par classe (avec .)</span>
+<span class="keyword">let</span> desc = document.<span class="function">querySelector</span>(<span class="string">".description"</span>);</code>
+        <div class="info-box" style="margin-top: 20px;">
+            <p>💡 <strong>document</strong> représente toute la page HTML. On lui dit : "Dans tout le document, va me chercher l'élément qui a l'ID #username".</p>
+        </div>
+        <div class="step-box" style="margin-top: 20px;">
+            <p style="font-size: 24px;">⚠️ N'oubliez pas : <strong>#</strong> pour les ID, <strong>.</strong> pour les classes !</p>
+        </div>
+    </div>
+
+    <!-- Slide 19 : Exercice querySelector -->
+    <div class="slide">
+        <h2>🎯 Exercice 4 : Sélectionner</h2>
+        <div class="exercise-box">
+            <h3>HTML donné sur CodePen :</h3>
+            <code style="background: #1d1d1f; font-size: 24px;"><span class="keyword">&lt;h1</span> <span class="function">id</span>=<span class="string">"titre"</span><span class="keyword">&gt;</span>Bienvenue<span class="keyword">&lt;/h1&gt;</span>
+<span class="keyword">&lt;p</span> <span class="function">class</span>=<span class="string">"intro"</span><span class="keyword">&gt;</span>Ceci est un texte<span class="keyword">&lt;/p&gt;</span></code>
+            <p style="font-size: 26px; margin-top: 20px;">👉 Sélectionnez ces deux éléments en JavaScript et affichez-les dans la console</p>
+            <p style="font-size: 22px; margin-top: 15px; color: #6e6e73;">📌 Indice : utilisez querySelector avec # pour l'ID et . pour la classe</p>
+        </div>
+        <div class="timer-box">
+            <p>⏱️ 5 minutes</p>
+        </div>
+    </div>
+
+    <!-- Slide 20 : Modifier texte -->
+    <div class="slide">
+        <h2>Étape 2 : Modifier le texte</h2>
+        <p class="subtitle">textContent = changer le texte d'un élément</p>
+        <code><span class="comment">// D'abord, on sélectionne l'élément</span>
+<span class="keyword">let</span> titre = document.<span class="function">querySelector</span>(<span class="string">"#username"</span>);
+
+<span class="comment">// Ensuite, on change son texte</span>
+titre.<span class="function">textContent</span> = <span class="string">"Nouveau texte"</span>;</code>
+        <div class="info-box">
+            <p>💡 <strong>textContent</strong> signifie "contenu textuel". On accède au texte de l'élément et on le remplace par une nouvelle valeur.</p>
+        </div>
+    </div>
+
+    <!-- Slide 21 : Modifier style -->
+    <div class="slide">
+        <h2>Étape 2 : Modifier le style</h2>
+        <p class="subtitle">style = changer l'apparence d'un élément</p>
+        <code>titre.<span class="function">style</span>.color = <span class="string">"blue"</span>;
+titre.<span class="function">style</span>.fontSize = <span class="string">"40px"</span>;
+titre.<span class="function">style</span>.backgroundColor = <span class="string">"yellow"</span>;</code>
+        <div class="info-box">
+            <p>⚠️ <strong>Attention à la syntaxe :</strong></p>
+            <p style="margin-top: 10px;">CSS : <code style="display:inline; padding: 5px 10px; font-size: 18px;">font-size</code> → JavaScript : <code style="display:inline; padding: 5px 10px; font-size: 18px;">fontSize</code></p>
+            <p style="margin-top: 5px;">CSS : <code style="display:inline; padding: 5px 10px; font-size: 18px;">background-color</code> → JavaScript : <code style="display:inline; padding: 5px 10px; font-size: 18px;">backgroundColor</code></p>
+            <p style="margin-top: 10px;">En JavaScript, on enlève le tiret et on met une majuscule (camelCase).</p>
+        </div>
+    </div>
+
+    <!-- Slide 22 : Exercice Modifier -->
+    <div class="slide">
+        <h2>🎯 Exercice 5 : Modifier</h2>
+        <div class="exercise-box">
+            <h3>À vous de jouer sur CodePen !</h3>
+            <ul>
+                <li>Sélectionner l'élément avec l'id <span class="highlight">"titre"</span></li>
+                <li>Changer son texte en <span class="highlight">"Hello World"</span></li>
+                <li>Changer sa couleur en <span class="highlight">rouge</span></li>
+                <li>Changer sa taille en <span class="highlight">50px</span></li>
+            </ul>
+            <p style="font-size: 22px; margin-top: 20px; color: #6e6e73;">📌 Rappel : en JS, on écrit fontSize (pas font-size)</p>
+        </div>
+        <div class="timer-box">
+            <p>⏱️ 5 minutes</p>
+        </div>
+    </div>
+
+    <!-- Slide 23 : Transition vers événements -->
+    <div class="slide">
+        <h2>Étape 3 : Réagir aux actions</h2>
+        <p class="subtitle">Faire quelque chose quand l'utilisateur agit</p>
+        <div class="analogy-box">
+            <p>🚪 <strong>Analogie :</strong> C'est comme un détecteur de mouvement devant une porte. Quand quelqu'un passe (= événement), la lumière s'allume (= action).</p>
+        </div>
+        <div class="step-box" style="margin-top: 30px;">
+            <p style="font-size: 26px; margin-bottom: 20px;"><strong>Le principe :</strong></p>
+            <p style="font-size: 24px;">1️⃣ Je <span class="highlight">sélectionne</span> un élément (ex: un bouton)</p>
+            <p style="font-size: 24px;">2️⃣ Je lui dis : "Quand on te <span class="highlight">clique</span>..."</p>
+            <p style="font-size: 24px;">3️⃣ "...tu fais <span class="highlight">cette action</span>"</p>
+        </div>
+    </div>
+
+    <!-- Slide 24 : addEventListener -->
+    <div class="slide">
+        <h2>addEventListener</h2>
+        <p class="subtitle">"Ajoute un écouteur d'événement"</p>
+        <code><span class="comment">// 1. Sélectionner le bouton</span>
+<span class="keyword">let</span> bouton = document.<span class="function">querySelector</span>(<span class="string">"#monBouton"</span>);
+
+<span class="comment">// 2. Quand on clique dessus...</span>
+bouton.<span class="function">addEventListener</span>(<span class="string">"click"</span>, <span class="keyword">function</span>() {
+    <span class="comment">// 3. ...faire cette action</span>
+    alert(<span class="string">"Bouton cliqué !"</span>);
+});</code>
+        <div class="info-box">
+            <p>💡 <strong>Décryptage :</strong> addEventListener = "ajoute un écouteur". On dit au bouton : "Écoute, et quand tu entends un 'click', exécute cette fonction".</p>
+        </div>
+    </div>
+
+    <!-- Slide 25 : Exercice addEventListener -->
+    <div class="slide">
+        <h2>🎯 Exercice 6 : Événement</h2>
+        <div class="exercise-box">
+            <h3>HTML donné sur CodePen :</h3>
+            <code style="background: #1d1d1f; font-size: 24px;"><span class="keyword">&lt;button</span> <span class="function">id</span>=<span class="string">"btn"</span><span class="keyword">&gt;</span>Cliquez-moi<span class="keyword">&lt;/button&gt;</span></code>
+            <p style="font-size: 26px; margin-top: 20px;">👉 Au clic sur le bouton, affichez une alerte <span class="highlight">"Bravo !"</span></p>
+            <p style="font-size: 22px; margin-top: 15px; color: #6e6e73;">📌 N'oubliez pas : sélectionner d'abord, puis addEventListener</p>
+        </div>
+        <div class="timer-box">
+            <p>⏱️ 7 minutes</p>
+        </div>
+    </div>
+
+    <!-- Slide 26 : Conditions Introduction -->
+    <div class="slide">
+        <h2>Conditions</h2>
+        <p class="subtitle">Prendre des décisions dans le code</p>
+        <div class="analogy-box">
+            <p>🚦 <strong>Analogie :</strong> C'est comme un feu rouge. SI le feu est vert → tu passes. SINON → tu t'arrêtes. Le code fait pareil : il vérifie une condition et agit en conséquence.</p>
+        </div>
+        <ul style="margin-top: 30px;">
+            <li><span class="highlight">SI</span> (if) une condition est vraie</li>
+            <li><span class="highlight">ALORS</span> faire une action</li>
+            <li><span class="highlight">SINON</span> (else) faire autre chose</li>
+        </ul>
+    </div>
+
+    <!-- Slide 27 : if/else -->
+    <div class="slide">
+        <h2>if / else</h2>
+        <code><span class="keyword">let</span> followers = <span class="number">10500000</span>;
+
+<span class="keyword">if</span> (followers > <span class="number">1000000</span>) {
+    <span class="comment">// Si followers est supérieur à 1 million</span>
+    console.<span class="function">log</span>(<span class="string">"✅ Compte vérifié"</span>);
+} <span class="keyword">else</span> {
+    <span class="comment">// Sinon</span>
+    console.<span class="function">log</span>(<span class="string">"❌ Non vérifié"</span>);
+}</code>
+        <div class="info-box">
+            <p>💡 <strong>Opérateurs de comparaison :</strong></p>
+            <p style="margin-top: 10px;"><code style="display:inline; padding: 3px 8px; font-size: 18px;">></code> supérieur | <code style="display:inline; padding: 3px 8px; font-size: 18px;"><</code> inférieur | <code style="display:inline; padding: 3px 8px; font-size: 18px;">>=</code> supérieur ou égal | <code style="display:inline; padding: 3px 8px; font-size: 18px;">==</code> égal</p>
+        </div>
+    </div>
+
+    <!-- Slide 28 : Exercice Condition -->
+    <div class="slide">
+        <h2>🎯 Exercice 7 : Condition</h2>
+        <div class="exercise-box">
+            <h3>À vous de jouer sur CodePen !</h3>
+            <ul>
+                <li>Créer une variable <span class="highlight">age</span> = 17</li>
+                <li>SI age >= 18 → afficher <span class="highlight">"Majeur"</span> dans la console</li>
+                <li>SINON → afficher <span class="highlight">"Mineur"</span> dans la console</li>
+            </ul>
+            <p style="font-size: 22px; margin-top: 20px; color: #6e6e73;">📌 Testez avec différentes valeurs de age (15, 18, 25...)</p>
+        </div>
+        <div class="timer-box">
+            <p>⏱️ 5 minutes</p>
+        </div>
+    </div>
+
+    <!-- Slide 29 : Exemple complet -->
+    <div class="slide">
+        <h2>Exemple complet</h2>
+        <p class="subtitle">On combine tout : variable + événement + condition</p>
+        <code><span class="comment">// 1. Ma donnée</span>
+<span class="keyword">let</span> followers = <span class="number">10500000</span>;
+
+<span class="comment">// 2. Je sélectionne le bouton</span>
+<span class="keyword">let</span> bouton = document.<span class="function">querySelector</span>(<span class="string">"#verifier"</span>);
+
+<span class="comment">// 3. Au clic, je vérifie la condition</span>
+bouton.<span class="function">addEventListener</span>(<span class="string">"click"</span>, <span class="keyword">function</span>() {
+    <span class="keyword">if</span> (followers > <span class="number">1000000</span>) {
+        alert(<span class="string">"✅ Compte vérifié !"</span>);
+    } <span class="keyword">else</span> {
+        alert(<span class="string">"❌ Non vérifié"</span>);
+    }
+});</code>
+    </div>
+
+    <!-- Slide 30 : Exercice Final -->
+    <div class="slide">
+        <h2>🎯 Exercice Final</h2>
+        <div class="exercise-box">
+            <h3>Combinez tout ce qu'on a vu !</h3>
+            <ul>
+                <li>Créer une variable <span class="highlight">score</span> = 75</li>
+                <li>Au clic sur un bouton <span class="highlight">#resultat</span></li>
+                <li>SI score >= 50 → alerte <span class="highlight">"Réussi ✅"</span></li>
+                <li>SINON → alerte <span class="highlight">"Raté ❌"</span></li>
+            </ul>
+            <p style="font-size: 22px; margin-top: 20px; color: #6e6e73;">📌 Étapes : 1) variable → 2) sélectionner → 3) addEventListener → 4) if/else</p>
+        </div>
+        <div class="timer-box">
+            <p>⏱️ 10 minutes</p>
+        </div>
+    </div>
+
+    <!-- Slide 31 : Erreurs fréquentes 1 -->
+    <div class="slide">
+        <h2>⚠️ Erreurs fréquentes</h2>
+        
+        <div class="error-box">
+            <p style="font-size: 22px;"><strong>❌ Oublier les guillemets pour les textes</strong></p>
+            <code><span class="keyword">let</span> nom = netflixfr; <span class="comment">// ❌ ERREUR</span>
+<span class="keyword">let</span> nom = <span class="string">"netflixfr"</span>; <span class="comment">// ✅ CORRECT</span></code>
+            <p style="font-size: 20px; margin-top: 10px; color: #6e6e73;">→ Sans guillemets, JS cherche une variable qui s'appelle netflixfr</p>
+        </div>
+
+        <div class="error-box">
+            <p style="font-size: 22px;"><strong>❌ Oublier le # ou . dans querySelector</strong></p>
+            <code>document.<span class="function">querySelector</span>(<span class="string">"username"</span>); <span class="comment">// ❌</span>
+document.<span class="function">querySelector</span>(<span class="string">"#username"</span>); <span class="comment">// ✅</span></code>
+            <p style="font-size: 20px; margin-top: 10px; color: #6e6e73;">→ Sans #, JS cherche une balise &lt;username&gt; qui n'existe pas</p>
+        </div>
+    </div>
+
+    <!-- Slide 32 : Erreurs fréquentes 2 -->
+    <div class="slide">
+        <h2>⚠️ Erreurs fréquentes (suite)</h2>
+        
+        <div class="error-box">
+            <p style="font-size: 22px;"><strong>❌ Oublier les parenthèses de function()</strong></p>
+            <code>bouton.<span class="function">addEventListener</span>(<span class="string">"click"</span>, <span class="keyword">function</span> {  <span class="comment">// ❌</span>
+bouton.<span class="function">addEventListener</span>(<span class="string">"click"</span>, <span class="keyword">function</span>() { <span class="comment">// ✅</span></code>
+            <p style="font-size: 20px; margin-top: 10px; color: #6e6e73;">→ Les parenthèses () sont obligatoires même si elles sont vides</p>
+        </div>
+
+        <div class="error-box">
+            <p style="font-size: 22px;"><strong>❌ Confondre = et ==</strong></p>
+            <code><span class="keyword">if</span> (age = <span class="number">18</span>) <span class="comment">// ❌ = c'est pour ASSIGNER une valeur</span>
+<span class="keyword">if</span> (age == <span class="number">18</span>) <span class="comment">// ✅ == c'est pour COMPARER</span></code>
+            <p style="font-size: 20px; margin-top: 10px; color: #6e6e73;">→ Un seul = change la valeur, deux == comparent les valeurs</p>
+        </div>
+    </div>
+
+    <!-- Slide 33 : Récapitulatif -->
+    <div class="slide">
+        <h2>Récapitulatif</h2>
+        <table class="table">
+            <tr>
+                <th>Concept</th>
+                <th>Code</th>
+            </tr>
+            <tr>
+                <td>Variable</td>
+                <td><span class="highlight">let</span> nom = "valeur";</td>
+            </tr>
+            <tr>
+                <td>Constante</td>
+                <td><span class="highlight">const</span> nom = "valeur";</td>
+            </tr>
+            <tr>
+                <td>Sélectionner</td>
+                <td>document.<span class="highlight">querySelector</span>("#id")</td>
+            </tr>
+            <tr>
+                <td>Modifier texte</td>
+                <td>element.<span class="highlight">textContent</span> = "..."</td>
+            </tr>
+            <tr>
+                <td>Modifier style</td>
+                <td>element.<span class="highlight">style</span>.color = "..."</td>
+            </tr>
+            <tr>
+                <td>Événement</td>
+                <td>element.<span class="highlight">addEventListener</span>("click", ...)</td>
+            </tr>
+            <tr>
+                <td>Condition</td>
+                <td><span class="highlight">if</span> (...) { } <span class="highlight">else</span> { }</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Slide 34 : Fin -->
+    <div class="slide">
+        <h1>Des questions ? 🙋</h1>
+        <p class="subtitle">N'hésitez pas à me solliciter sur Discord !</p>
+    </div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function showSlide(n) {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (n + slides.length) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') showSlide(currentSlide + 1);
+        if (e.key === 'ArrowLeft') showSlide(currentSlide - 1);
+    });
+
+    document.addEventListener('click', (e) => {
+        if (e.clientX > window.innerWidth / 2) {
+            showSlide(currentSlide + 1);
+        } else {
+            showSlide(currentSlide - 1);
+        }
+    });
+</script>
+</body>
+</html>
